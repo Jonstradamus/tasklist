@@ -1,7 +1,7 @@
 const barra = document.querySelector('#barra');
 const addBtn = document.querySelector("#add-btn");
 const addItem = document.querySelector('#add-item');
-const list = document.querySelector('#list')
+const list = document.querySelector('#list');
 const listItems = document.querySelector('.list-items');
 const deleteBtn = document.querySelectorAll('.delete-btn');
 const deleteItem = document.querySelector('.delete-item');
@@ -11,7 +11,8 @@ let total = document.querySelector('#total');
 let completo = document.querySelector('#completo');
 let incompleto = document.querySelector('#incompleto');
 const text = document.querySelector('.text');
-const form =document.querySelector('#form')
+const form =document.querySelector('#form');
+
 
 
 const TotalFunction =()=>{
@@ -30,6 +31,26 @@ incompleto.innerHTML= `Incompleto = ${incompletoCount}`
 }
 
 
+
+
+const ValidateTask=() => {
+    if (barra.value ==='') {
+        addBtn.disabled = true;
+    
+    } else {
+        addBtn.disabled = false;
+
+        
+    }
+   
+}
+
+barra.addEventListener('input', e =>{
+    ValidateTask (barra)
+});
+
+
+
 const TotalityCount = ()=>{
 TotalFunction();
 CompletedFunction();
@@ -40,6 +61,8 @@ IncompletedFunction();
 TotalityCount();
 
 form.addEventListener('submit' , e =>{
+    onclick = addBtn.disabled = true;
+    
 e.preventDefault();
 const li = document.createElement('li');
 li.classList.add('list-items');
@@ -64,6 +87,7 @@ li.innerHTML = `
 
 list.appendChild(li);
 barra.value = '';
+
 TotalityCount();
 localStorage.setItem('list', list.innerHTML);
 
